@@ -1,0 +1,74 @@
+/* Gaya bersama labs.flowmind.my.id. Token warna dan font mengikuti design system Flowmind Labs (mode A1 Kertas Grid). */
+@font-face { font-family: "Plus Jakarta Sans"; font-weight: 200 800; font-display: swap;
+  src: url("/assets/fonts/plus-jakarta-sans-latin-wght-normal.woff2") format("woff2"); }
+@font-face { font-family: "Instrument Serif"; font-style: italic; font-weight: 400; font-display: swap;
+  src: url("/assets/fonts/instrument-serif-italic-400.woff2") format("woff2"); }
+@font-face { font-family: "DM Mono"; font-weight: 500; font-display: swap;
+  src: url("/assets/fonts/dm-mono-latin-500-normal.woff2") format("woff2"); }
+
+:root {
+  --navy: #202030;
+  --putih: #F8F7FC;
+  --garis: #E8E5F1;
+  --redup: #55556a;
+  --grad: linear-gradient(100deg, #8732E0 0%, #C636CA 35%, #E8407F 65%, #F87040 100%);
+  --sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --serif: "Instrument Serif", Georgia, serif;
+  --mono: "DM Mono", ui-monospace, monospace;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  color: var(--navy);
+  background-color: var(--putih);
+  background-image:
+    linear-gradient(var(--garis) 1px, transparent 1px),
+    linear-gradient(90deg, var(--garis) 1px, transparent 1px);
+  background-size: 48px 48px;
+  font: 17px/1.6 var(--sans);
+}
+a { color: inherit; }
+main { max-width: 680px; margin: 0 auto; padding: 24px 16px 64px; }
+
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; }
+.brand img { width: 28px; height: auto; }
+.brand small { font: 500 13px var(--mono); color: var(--redup); }
+
+.pill {
+  display: inline-block; margin: 40px 0 0; padding: 4px 14px;
+  border: 1.5px solid var(--navy); border-radius: 999px; font: 500 13px var(--mono);
+}
+h1 { margin: 12px 0 12px; font-size: clamp(40px, 9vw, 64px); line-height: 1.05; letter-spacing: -0.03em; }
+h1 em, h2 em {
+  font: italic 400 1.08em var(--serif); letter-spacing: 0;
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+h2 { margin: 48px 0 12px; font-size: 26px; letter-spacing: -0.02em; }
+.lede { margin: 0; font-size: 19px; color: var(--redup); }
+
+.card { background: #fff; border: 1px solid var(--garis); border-radius: 20px; padding: 20px; }
+.video { display: block; width: 100%; max-width: 360px; margin: 32px auto 0; border-radius: 20px; background: #f4f3ee; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.btn {
+  display: inline-block; padding: 14px 22px; border-radius: 14px; text-decoration: none;
+  font-weight: 700; border: 1.5px solid var(--navy);
+}
+.btn-utama { background: var(--navy); color: #fff; }
+.note { margin-top: 12px; font-size: 15px; color: var(--redup); }
+
+ul, ol { padding-left: 22px; }
+li { margin: 6px 0; }
+code {
+  font: 500 15px var(--mono); background: #fff; border: 1px solid var(--garis);
+  border-radius: 8px; padding: 2px 8px; overflow-wrap: anywhere;
+}
+
+.list { list-style: none; padding: 0; }
+.list a { display: block; text-decoration: none; }
+.list a:hover { border-color: var(--navy); }
+.list strong { display: block; font-size: 20px; }
+.list span { color: var(--redup); }
+
+footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--garis); font-size: 14px; color: var(--redup); }

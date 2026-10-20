@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="id" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>HTML jadi video</title>
+    <!-- GSAP disimpan lokal supaya render tetap jalan tanpa internet -->
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Inter";
+        src: url("assets/fonts/Inter-latin-wght.woff2") format("woff2");
+        font-weight: 100 900;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        src: url("assets/fonts/JetBrainsMono-latin-wght.woff2") format("woff2");
+        font-weight: 100 800;
+        font-display: block;
+      }
+
+      /* Ganti warna di sini saja, semua elemen mengikuti */
+      :root {
+        --bg: #f4f3ee;
+        --ink: #141414;
+        --accent: #2b59e8;
+        --card: #17181c;
+        --code: #e8e8e4;
+        --code-muted: #9a9ca4;
+        --code-tag: #8fb0ff;
+        --code-string: #a9dc96;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      #root {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Inter", sans-serif;
+      }
+
+      /* Setiap scene memenuhi layar; isinya disusun vertikal di tengah */
+      .clip {
+        position: absolute;
+        inset: 0;
+      }
+      .stack {
+        width: 100%;
+        height: 100%;
+        padding: 0 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 64px;
+      }
+
+      .chip {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 32px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        color: var(--accent);
+        padding: 14px 28px;
+        border: 2px solid var(--accent);
+        border-radius: 999px;
+      }
+      .headline {
+        max-width: 880px;
+        font-size: 84px;
+        font-weight: 680;
+        line-height: 1.08;
+        letter-spacing: -0.035em;
+        text-align: center;
+      }
+      .headline em {
+        font-style: normal;
+        color: var(--accent);
+      }
+
+      /* Scene 1: kartu kode */
+      .card {
+        width: 880px;
+        padding: 48px 52px;
+        border-radius: 32px;
+        background: var(--card);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 38px;
+        line-height: 1.7;
+        color: var(--code);
+      }
+      .line {
+        display: block;
+        white-space: pre;
+      }
+      .t {
+        color: var(--code-tag);
+      }
+      .a {
+        color: var(--code-muted);
+      }
+      .s {
+        color: var(--code-string);
+      }
+
+      /* Scene 2: layar video mini + timeline */
+      .frame {
+        width: 468px;
+        height: 832px;
+        border-radius: 36px;
+        background: var(--card);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 48px;
+        gap: 40px;
+      }
+      .frame-title {
+        font-size: 88px;
+        font-weight: 720;
+        letter-spacing: -0.04em;
+        line-height: 1;
+        color: var(--code);
+      }
+      .word {
+        display: inline-block;
+      }
+      .ball {
+        display: block;
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      .track {
+        width: 760px;
+        height: 12px;
+        border-radius: 6px;
+        background: #d9d8d1;
+        position: relative;
+      }
+      .key {
+        position: absolute;
+        top: -8px;
+        width: 28px;
+        height: 28px;
+        margin-left: -14px;
+        border-radius: 50%;
+        background: var(--ink);
+      }
+      .playhead {
+        position: absolute;
+        top: -26px;
+        left: 0;
+        width: 6px;
+        height: 64px;
+        margin-left: -3px;
+        border-radius: 3px;
+        background: var(--accent);
+      }
+
+      /* Scene 3: progres render */
+      .percent {
+        font-size: 220px;
+        font-weight: 760;
+        letter-spacing: -0.05em;
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+      }
+      .bar {
+        width: 880px;
+        height: 24px;
+        border-radius: 12px;
+        background: #d9d8d1;
+        overflow: hidden;
+      }
+      .bar-fill {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: var(--accent);
+        transform-origin: left center;
+      }
+      .file {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 22px 34px;
+        border-radius: 24px;
+        background: var(--card);
+        color: var(--code);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 36px;
+      }
+      .file svg {
+        width: 40px;
+        height: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Root komposisi: ukuran kanvas dan durasi total (detik) -->
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="8"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!-- Scene 1 (0 - 2,7 dtk): tulis HTML -->
+      <section id="s1" class="clip" data-start="0" data-duration="2.7" data-track-index="0">
+        <div class="stack">
+          <div class="chip">01 · Tulis HTML</div>
+          <div class="card">
+            <span class="line"><span class="t">&lt;div</span> <span class="a">class=</span><span class="s">"clip"</span></span>
+            <span class="line">     <span class="a">data-start=</span><span class="s">"0"</span></span>
+            <span class="line">     <span class="a">data-duration=</span><span class="s">"3"</span><span class="t">&gt;</span></span>
+            <span class="line">  <span class="t">&lt;h1&gt;</span>Halo, video.<span class="t">&lt;/h1&gt;</span></span>
+            <span class="line"><span class="t">&lt;/div&gt;</span></span>
+          </div>
+          <h1 class="headline">Video ini dibuat dari <em>HTML</em>.</h1>
+        </div>
+      </section>
+
+      <!-- Scene 2 (2,7 - 5,4 dtk): animasikan dengan GSAP -->
+      <section id="s2" class="clip" data-start="2.7" data-duration="2.7" data-track-index="0">
+        <div class="stack">
+          <div class="chip">02 · Gerakkan dengan GSAP</div>
+          <div class="frame">
+            <div class="frame-title"><span class="word">Halo,</span> <span class="word">video.</span></div>
+            <span class="ball"></span>
+          </div>
+          <div class="track">
+            <span class="key" style="left: 10%"></span>
+            <span class="key" style="left: 45%"></span>
+            <span class="key" style="left: 80%"></span>
+            <span class="playhead"></span>
+          </div>
+          <h2 class="headline">Animasi dikunci ke <em>timeline</em>.</h2>
+        </div>
+      </section>
+
+      <!-- Scene 3 (5,4 - 8 dtk): render jadi MP4 -->
+      <section id="s3" class="clip" data-start="5.4" data-duration="2.6" data-track-index="0">
+        <div class="stack">
+          <div class="chip">03 · Render jadi MP4</div>
+          <div class="percent"><span id="pct">0</span>%</div>
+          <div class="bar"><span class="bar-fill"></span></div>
+          <div class="file">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 12.5l5 5L20 6.5" />
+            </svg>
+            video.mp4 · 1080×1920
+          </div>
+          <h2 class="headline">Dirender di laptopmu, <em>bisa offline</em>.</h2>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // Satu timeline, dijeda. HyperFrames yang memutar dan merekamnya frame demi frame.
+      // Angka terakhir di tiap baris = detik mulai tween di timeline utama.
+      const tl = gsap.timeline({ paused: true });
+      const rise = { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" };
+
+      // Scene 1
+      tl.fromTo("#s1 .chip", { opacity: 0, y: 24 }, rise, 0.1)
+        .fromTo("#s1 .card", { opacity: 0, y: 60 }, { ...rise, duration: 0.7 }, 0.2)
+        .fromTo("#s1 .line", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.35, stagger: 0.12, ease: "power2.out" }, 0.5)
+        .fromTo("#s1 .headline", { opacity: 0, y: 40 }, rise, 1.1)
+        .to("#s1 .stack", { opacity: 0, y: -40, duration: 0.35, ease: "power2.in" }, 2.35);
+
+      // Scene 2
+      tl.fromTo("#s2 .chip", { opacity: 0, y: 24 }, rise, 2.8)
+        .fromTo("#s2 .frame", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" }, 2.85)
+        .fromTo("#s2 .word", { opacity: 0, y: 50 }, { ...rise, stagger: 0.15 }, 3.15)
+        .fromTo("#s2 .ball", { x: 0 }, { x: 300, duration: 1.3, ease: "power2.inOut" }, 3.4)
+        .fromTo("#s2 .playhead", { x: 0 }, { x: 760, duration: 2.2, ease: "none" }, 2.9)
+        .fromTo("#s2 .headline", { opacity: 0, y: 40 }, rise, 3.5)
+        .to("#s2 .stack", { opacity: 0, y: -40, duration: 0.35, ease: "power2.in" }, 5.05);
+
+      // Scene 3: angka persen dan bar bergerak bersama
+      tl.fromTo("#s3 .chip", { opacity: 0, y: 24 }, rise, 5.5)
+        .fromTo("#pct", { textContent: 0 }, { textContent: 100, snap: { textContent: 1 }, duration: 1.3, ease: "power1.inOut" }, 5.7)
+        .fromTo("#s3 .bar-fill", { scaleX: 0 }, { scaleX: 1, duration: 1.3, ease: "power1.inOut" }, 5.7)
+        .fromTo("#s3 .file", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, 7.0)
+        .fromTo("#s3 .headline", { opacity: 0, y: 40 }, rise, 6.0);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

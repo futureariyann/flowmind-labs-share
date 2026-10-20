@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HTML jadi video · Flowmind Labs</title>
+  <meta name="description" content="Starter project HyperFrames gratis: video 8 detik dari satu file HTML, plus prompt untuk membuatnya dari nol dengan AI agent." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://labs.flowmind.my.id/hyperframes" />
+  <meta property="og:title" content="HTML jadi video: starter project HyperFrames" />
+  <meta property="og:description" content="Video 8 detik dari satu file HTML, plus prompt untuk membuatnya dengan AI agent. Gratis dari @flowmind.labs." />
+  <meta property="og:image" content="https://labs.flowmind.my.id/hyperframes/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/site.css" />
+</head>
+<body>
+  <main>
+    <a class="brand" href="/"><img src="/assets/logo-mark.svg" alt="" /> Flowmind Labs <small>AI for real work</small></a>
+
+    <span class="pill">Starter project · gratis</span>
+    <h1>HTML jadi <em>video</em>.</h1>
+    <p class="lede">Video 8 detik ukuran 1080x1920 yang seluruhnya dibuat dari satu file HTML, lalu direkam jadi MP4 oleh HyperFrames. Lengkap dengan prompt untuk membuatnya dari nol pakai AI agent.</p>
+
+    <video class="video" src="/hyperframes/contoh.mp4" poster="/hyperframes/poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+
+    <div class="actions">
+      <a class="btn btn-utama" href="/hyperframes/hyperframes-video-starter.zip" download>Download starter (.zip, 139 KB)</a>
+      <a class="btn" href="https://github.com/futureariyann/flowmind-labs-share/tree/main/starters/hyperframes-video-starter">Lihat isinya di GitHub</a>
+    </div>
+    <p class="note">Starter ini dipakai di laptop. Kalau kamu buka dari HP, kirim link ini ke dirimu sendiri dulu, lalu buka di laptop.</p>
+
+    <h2>Isi <em>paket</em></h2>
+    <ul>
+      <li><code>index.html</code>: videonya. 3 scene, teks, warna, dan animasi GSAP ada di satu file.</li>
+      <li><code>PROMPT.md</code>: prompt untuk membuat video serupa dari nol, plus 3 variasi (ganti teks, ganti warna, tambah scene).</li>
+      <li><code>BACA-DULU.md</code>: panduan lengkap, syarat, dan batasan.</li>
+      <li>Font Inter dan JetBrains Mono (lisensi OFL) dan GSAP disimpan lokal, jadi render tidak butuh internet.</li>
+    </ul>
+
+    <h2>Cara <em>pakai</em></h2>
+    <ol>
+      <li>Unzip, lalu buka terminal di folder <code>hyperframes-video-starter</code>.</li>
+      <li>Cek syaratnya (Node.js 22+ dan FFmpeg): <code>npx hyperframes doctor</code></li>
+      <li>Lihat videonya di browser: <code>npx hyperframes preview</code></li>
+      <li>Render jadi MP4 di folder <code>renders/</code>: <code>npx hyperframes render</code></li>
+      <li>Mau ubah? Buka AI agent (misalnya Claude Code) di folder itu dan tempel salah satu prompt dari <code>PROMPT.md</code>.</li>
+    </ol>
+
+    <h2>Yang perlu kamu <em>tahu</em></h2>
+    <ul>
+      <li>Ini bukan editor drag-and-drop seperti CapCut atau Canva. Videonya adalah kode, diubah sendiri atau lewat AI agent.</li>
+      <li>Butuh terminal. Internet hanya perlu saat pertama kali, untuk mengunduh HyperFrames dan browser perekamnya.</li>
+      <li>Starter ini belum memakai audio.</li>
+      <li>AI agent bisa salah. Jalankan <code>npx hyperframes check</code> dan lihat preview sebelum render.</li>
+    </ul>
+
+    <footer>
+      Dari carousel AI Radar di <a href="https://instagram.com/flowmind.labs">@flowmind.labs</a>.
+      HyperFrames adalah proyek open source dari HeyGen (<a href="https://hyperframes.heygen.com">dokumentasi</a>). Flowmind Labs tidak berafiliasi dengan HeyGen.
+    </footer>
+  </main>
+</body>
+</html>
