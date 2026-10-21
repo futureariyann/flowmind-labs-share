@@ -19,3 +19,4 @@ Bahan gratis yang dibagikan dari konten Instagram [@flowmind.labs](https://insta
 | Alamat | Isi | Kata CTA |
 |---|---|---|
 | `/hyperframes` | Starter project HyperFrames: video 8 detik dari satu file HTML + prompt | VIDEO |
+| `/agent` | Cheat sheet kapan cukup otomasi, kapan perlu AI agent (+ PDF dari CSS cetak halaman itu) | AGENT |

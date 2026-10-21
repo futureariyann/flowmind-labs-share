@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Otomasi atau AI agent · Flowmind Labs</title>
+  <meta name="description" content="Cheat sheet gratis: kapan cukup otomasi, kapan perlu AI agent. Mulai dari yang paling sederhana, naik tingkat kalau tugasnya memang butuh." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://labs.flowmind.my.id/agent" />
+  <meta property="og:title" content="Cheat sheet: kapan cukup otomasi, kapan perlu AI agent" />
+  <meta property="og:description" content="Bedanya, cara memilih, dan yang perlu disiapkan sebelum memakai agent. Gratis dari @flowmind.labs." />
+  <meta property="og:image" content="https://labs.flowmind.my.id/agent/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/site.css" />
+</head>
+<body>
+  <main>
+    <a class="brand" href="/"><img src="/assets/logo-mark.svg" alt="" /> Flowmind Labs <small>AI for real work</small></a>
+
+    <span class="pill">Cheat sheet · gratis</span>
+    <h1>Kapan cukup otomasi, kapan perlu <em>AI agent</em></h1>
+    <p class="lede">Aturannya satu: mulai dari cara yang paling sederhana, lalu naik tingkat hanya kalau tugasmu memang butuh.</p>
+
+    <div class="actions no-print">
+      <a class="btn btn-utama" href="/agent/cheat-sheet-otomasi-vs-agent.pdf" download>Download PDF (1 halaman)</a>
+    </div>
+
+    <h2>Bedanya</h2>
+    <div class="banding">
+      <div class="card">
+        <span class="label">Otomasi (workflow)</span>
+        <p>AI dan tool berjalan di jalur yang sudah kamu tulis dari awal. Seperti rel kereta: rutenya tetap, AI mengerjakan satu langkah di dalamnya.</p>
+        <span class="alur">pemicu → langkah → AI → hasil</span>
+      </div>
+      <div class="card">
+        <span class="label">AI agent</span>
+        <p>AI yang menentukan sendiri langkah dan tool yang dipakai sampai tugasnya selesai. Seperti sopir yang diberi tujuan.</p>
+        <span class="alur">tujuan → rencana → pakai tool → cek hasil → ulangi</span>
+      </div>
+    </div>
+
+    <h2>Mulai dari yang <em>paling sederhana</em></h2>
+    <ol class="tangga">
+      <li class="card">
+        <span class="label">Tingkat 1</span>
+        <strong>Satu permintaan ke AI</strong>
+        <p>Satu prompt yang dibekali dokumen atau contoh yang relevan. Untuk banyak kebutuhan, ini sudah cukup.</p>
+      </li>
+      <li class="card">
+        <span class="label">Tingkat 2</span>
+        <strong>Otomasi</strong>
+        <p>Langkahnya tetap dan kamu yang menulisnya. Cocok untuk tugas yang jelas: hasilnya bisa ditebak dan konsisten.</p>
+      </li>
+      <li class="card">
+        <span class="label">Tingkat 3</span>
+        <strong>AI agent</strong>
+        <p>AI yang memutuskan langkahnya. Cocok untuk tugas terbuka yang jumlah langkahnya tidak bisa ditebak dari awal.</p>
+      </li>
+    </ol>
+
+    <h2>Cek tugasmu</h2>
+    <table>
+      <thead>
+        <tr><th>Kalau tugasmu…</th><th>Pilih</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Selesai dengan satu jawaban dari AI yang diberi konteks</td><td><span class="tag">Tingkat 1</span></td></tr>
+        <tr><td>Langkahnya selalu sama dan bisa kamu tulis dari awal</td><td><span class="tag">Otomasi</span></td></tr>
+        <tr><td>Hasilnya harus konsisten setiap kali dijalankan</td><td><span class="tag">Otomasi</span></td></tr>
+        <tr><td>Jumlah langkahnya tidak bisa ditebak sebelum mulai</td><td><span class="tag is-agent">AI agent</span></td></tr>
+        <tr><td>Butuh keputusan di tengah jalan, misalnya memilih file atau tool</td><td><span class="tag is-agent">AI agent</span></td></tr>
+        <tr><td>Kamu belum percaya pada keputusan AI untuk tugas ini</td><td><span class="tag">Belum agent</span></td></tr>
+      </tbody>
+    </table>
+
+    <h2>Sebelum memakai <em>agent</em></h2>
+    <ul class="cek">
+      <li>Agent menukar biaya dan waktu dengan hasil yang lebih baik. Pastikan tukarannya sepadan untuk tugasmu.</li>
+      <li>Kesalahan bisa menumpuk: salah di langkah awal terbawa ke langkah berikutnya.</li>
+      <li>Uji dulu di lingkungan aman (sandbox) dan beri batasan yang jelas.</li>
+      <li>Pasang batas berhenti, misalnya jumlah putaran maksimum.</li>
+      <li>Siapkan titik cek supaya agent berhenti dan menunggu masukanmu, termasuk saat buntu.</li>
+    </ul>
+
+    <h2>Dua contoh</h2>
+    <div class="banding">
+      <div class="card">
+        <span class="label">Otomasi · contoh umum</span>
+        <p>Email klien masuk → AI merangkum isinya → ringkasan dikirim ke grup tim. Setiap email diproses dengan cara yang sama.</p>
+      </div>
+      <div class="card">
+        <span class="label">AI agent</span>
+        <p>“Perbaiki bug ini di repo” → agent membaca beberapa file, mengedit, menjalankan tes, lalu mengulang bila masih gagal. Anthropic memakai pola ini untuk coding agent mereka.</p>
+      </div>
+    </div>
+
+    <footer>
+      <p class="src">Sumber: Anthropic, <a href="https://www.anthropic.com/engineering/building-effective-agents">“Building effective agents”</a>, 19 Desember 2024, dibaca 21 Oktober 2026. Flowmind Labs tidak berafiliasi dengan Anthropic.</p>
+      <p>Dari carousel AI Explained di <a href="https://instagram.com/flowmind.labs">@flowmind.labs</a> · labs.flowmind.my.id/agent</p>
+    </footer>
+  </main>
+</body>
+</html>
