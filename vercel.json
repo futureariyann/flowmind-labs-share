@@ -1,4 +1,16 @@
 {
   "outputDirectory": "public",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/agent",
+      "destination": "https://belajareai.flowmind.my.id/produk/cheat-sheet-agent",
+      "permanent": false
+    },
+    {
+      "source": "/agent/:path*",
+      "destination": "https://belajareai.flowmind.my.id/produk/cheat-sheet-agent",
+      "permanent": false
+    }
+  ]
 }

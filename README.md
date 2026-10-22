@@ -19,4 +19,4 @@ Bahan gratis yang dibagikan dari konten Instagram [@flowmind.labs](https://insta
 | Alamat | Isi | Kata CTA |
 |---|---|---|
 | `/hyperframes` | Starter project HyperFrames: video 8 detik dari satu file HTML + prompt | VIDEO |
-| `/agent` | Cheat sheet kapan cukup otomasi, kapan perlu AI agent (+ PDF dari CSS cetak halaman itu) | AGENT |
+| `/agent` | Dialihkan ke produk gratis LMS `belajareai.flowmind.my.id/produk/cheat-sheet-agent` (sejak 22 Okt 2026; orang daftar lewat checkout). Sumber HTML lama ada di riwayat git (commit 1ee292b). | AGENT |
